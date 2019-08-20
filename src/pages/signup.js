@@ -12,8 +12,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // Redux stuff
-// import { connect } from 'react-redux';
-// import { signupUser } from '../redux/actions/userActions';
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
 
 const styles = theme => ({ ...theme.spreadThis });
 
@@ -27,6 +27,7 @@ class signup extends Component {
       confirmPassword: '',
       handle: '',
       errors: {},
+      //loading: false
     };
   }
   // componentWillReceiveProps(nextProps) {
@@ -36,28 +37,28 @@ class signup extends Component {
   // }
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({
-      loading: true,
-    });
+    // this.setState({
+    //   loading: true,
+    // });
     const newUserData = {
       email: this.state.email,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword,
       handle: this.state.handle,
     };
-    // this.props.signupUser(newUserData, this.props.history);
-    axios
-      .post('/signup', newUserData)
-      .then(res => {
-        console.log(res.data);
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
-        this.setState({ loading: false });
-        this.props.history.push('/');
-      })
-      .catch(err => {
-        console.log(err.response.data);
-        this.setState({ errors: err.response.data, loading: false });
-      });
+    this.props.signupUser(newUserData, this.props.history);
+    // axios
+    //   .post('/signup', newUserData)
+    //   .then(res => {
+    //     console.log(res.data);
+    //     localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
+    //     this.setState({ loading: false });
+    //     this.props.history.push('/');
+    //   })
+    //   .catch(err => {
+    //     console.log(err.response.data);
+    //     this.setState({ errors: err.response.data, loading: false });
+    //   });
   };
   handleChange = event => {
     this.setState({

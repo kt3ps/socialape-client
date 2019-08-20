@@ -6,6 +6,11 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+// Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
+// import { SET_AUTHENTICATED } from './redux/types';
+// import { logoutUser, getUserData } from './redux/actions/userActions';
 
 import home from './pages/home';
 import login from './pages/login';
@@ -17,7 +22,8 @@ import AuthRoute from './util/AuthRoute';
 const theme = createMuiTheme(themeObject);
 
 axios.defaults.baseURL =
-  'https://europe-west1-socialape-d081e.cloudfunctions.net/api';
+  // 'https://europe-west1-socialape-d081e.cloudfunctions.net/api';
+  'https://us-central1-socialape-7f5cd.cloudfunctions.net/api';
 
 let authenticated;
 const token = localStorage.FBIdToken;
@@ -39,7 +45,7 @@ if (token) {
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <div className="App">
+      <Provider store={store}>
         <Router>
           <div className="container">
             <Navbar />
@@ -69,7 +75,7 @@ function App() {
             </Switch>
           </div>
         </Router>
-      </div>
+      </Provider>
     </MuiThemeProvider>
   );
 }
