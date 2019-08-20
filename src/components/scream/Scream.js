@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
-// import dayjs from 'dayjs';
-// import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 // import PropTypes from 'prop-types';
 // import MyButton from '../../util/MyButton';
 // import DeleteScream from './DeleteScream';
@@ -35,7 +35,7 @@ const styles = {
 
 class Scream extends Component {
   render() {
-    // dayjs.extend(relativeTime);
+    dayjs.extend(relativeTime);
     const {
       classes,
       scream: {
@@ -75,11 +75,9 @@ class Scream extends Component {
           {
             // deleteButton
           }
-          {
-            // <Typography variant="body2" color="textSecondary">
-            //   {dayjs(createdAt).fromNow()}
-            // </Typography>
-          }
+          <Typography variant="body2" color="textSecondary">
+            {dayjs(createdAt).fromNow()}
+          </Typography>
           <Typography variant="body1">{body}</Typography>
           {
             // <LikeButton screamId={screamId} />
