@@ -30,11 +30,11 @@ class login extends Component {
       //loading: false
     };
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.UI.errors) {
-  //     this.setState({ errors: nextProps.UI.errors });
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors });
+    }
+  }
   handleSubmit = event => {
     // this.setState({ loading: true });
     event.preventDefault();
