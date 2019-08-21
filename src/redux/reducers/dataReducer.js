@@ -4,7 +4,7 @@ import {
   UNLIKE_SCREAM,
   LOADING_DATA,
   DELETE_SCREAM,
-  // POST_SCREAM,
+  POST_SCREAM,
   SET_SCREAM,
   // SUBMIT_COMMENT,
 } from '../types';
@@ -72,11 +72,11 @@ export default function(state = initialState, action) {
         ...state,
       };
     }
-    // case POST_SCREAM:
-    //   return {
-    //     ...state,
-    //     screams: [action.payload, ...state.screams],
-    //   };
+    case POST_SCREAM:
+      return {
+        ...state,
+        screams: [action.payload, ...state.screams],
+      };
     // case SUBMIT_COMMENT:
     //   return {
     //     ...state,
