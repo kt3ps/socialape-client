@@ -18,7 +18,7 @@ import AuthRoute from './util/AuthRoute';
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
-// import user from './pages/user';
+import user from './pages/user';
 
 import axios from 'axios';
 
@@ -65,9 +65,8 @@ function App() {
                 component={signup}
                 // authenticated={authenticated}
               />
-              />
+              <Route exact path="/users/:handle" component={user} />
               {
-                // <Route exact path="/users/:handle" component={user} />
                 // <Route
                 //   exact
                 //   path="/users/:handle/scream/:screamId"
