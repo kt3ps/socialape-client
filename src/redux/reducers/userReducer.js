@@ -31,11 +31,11 @@ export default function(state = initialState, action) {
         loading: false,
         ...action.payload,
       };
-    // case LOADING_USER:
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //   };
+    case LOADING_USER:
+      return {
+        ...state,
+        loading: true,
+      };
     // case LIKE_SCREAM:
     //   return {
     //     ...state,
