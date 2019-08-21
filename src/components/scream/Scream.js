@@ -8,7 +8,7 @@ import MyButton from '../../util/MyButton';
 // import MyButton from '../../util/MyButton';
 import DeleteScream from './DeleteScream';
 import ScreamDialog from './ScreamDialog';
-// import LikeButton from './LikeButton';
+import LikeButton from './LikeButton';
 // MUI Stuff
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,7 +20,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 // Redux
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
+// import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
 
 const styles = {
   card: {
@@ -79,21 +79,21 @@ class Scream extends Component {
     // console.log('this.props.scream', this.props.scream);
     console.log('handle', this.props.user);
 
-    const likeButton = !authenticated ? (
-      <Link to="/login">
-        <MyButton tip="Like">
-          <FavoriteBorder color="primary" />
-        </MyButton>
-      </Link>
-    ) : this.likedScream() ? (
-      <MyButton tip="Undo like" onClick={this.unlikeScream}>
-        <FavoriteIcon color="primary" />
-      </MyButton>
-    ) : (
-      <MyButton tip="Like" onClick={this.likeScream}>
-        <FavoriteBorder color="primary" />
-      </MyButton>
-    );
+    // const likeButton = !authenticated ? (
+    //   <Link to="/login">
+    //     <MyButton tip="Like">
+    //       <FavoriteBorder color="primary" />
+    //     </MyButton>
+    //   </Link>
+    // ) : this.likedScream() ? (
+    //   <MyButton tip="Undo like" onClick={this.unlikeScream}>
+    //     <FavoriteIcon color="primary" />
+    //   </MyButton>
+    // ) : (
+    //   <MyButton tip="Like" onClick={this.likeScream}>
+    //     <FavoriteBorder color="primary" />
+    //   </MyButton>
+    // );
     const deleteButton =
       authenticated && userHandle === handle ? (
         <DeleteScream screamId={screamId} />
@@ -119,9 +119,9 @@ class Scream extends Component {
           </Typography>
           <Typography variant="body1">{body}</Typography>
 
+          <LikeButton screamId={screamId} />
           {
-            likeButton
-            // <LikeButton screamId={screamId} />
+            // likeButton
           }
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">
@@ -146,21 +146,21 @@ Scream.propTypes = {
   // openDialog: PropTypes.bool,
   user: PropTypes.object.isRequired,
   // screamId: PropTypes.string.isRequired,
-  likeScream: PropTypes.func.isRequired,
-  unlikeScream: PropTypes.func.isRequired,
+  // likeScream: PropTypes.func.isRequired,
+  // unlikeScream: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
 });
-const mapActionsToProps = {
-  likeScream,
-  unlikeScream,
-};
+// const mapActionsToProps = {
+//   likeScream,
+//   unlikeScream,
+// };
 
 // export default withStyles(styles)(Scream);
 export default connect(
   mapStateToProps,
-  mapActionsToProps,
+  // mapActionsToProps,
 )(withStyles(styles)(Scream));
 // )(LikeButton);
