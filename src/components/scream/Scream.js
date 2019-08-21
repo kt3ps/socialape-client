@@ -143,7 +143,7 @@ Scream.propTypes = {
   // user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  // openDialog: PropTypes.bool,
+  openDialog: PropTypes.bool,
   user: PropTypes.object.isRequired,
   // screamId: PropTypes.string.isRequired,
   // likeScream: PropTypes.func.isRequired,
