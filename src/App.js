@@ -9,8 +9,8 @@ import jwtDecode from 'jwt-decode';
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
-// import { SET_AUTHENTICATED } from './redux/types';
-// import { logoutUser, getUserData } from './redux/actions/userActions';
+import { SET_AUTHENTICATED } from './redux/types';
+import { logoutUser, getUserData } from './redux/actions/userActions';
 
 import home from './pages/home';
 import login from './pages/login';
@@ -25,20 +25,20 @@ axios.defaults.baseURL =
   // 'https://europe-west1-socialape-d081e.cloudfunctions.net/api';
   'https://us-central1-socialape-7f5cd.cloudfunctions.net/api';
 
-let authenticated;
+// let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
   console.log('decodedToken', decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
-    // store.dispatch(logoutUser());
-    window.location.href = '/login';
-    authenticated = false;
+    store.dispatch(logoutUser());
+    // window.location.href = '/login';
+    // authenticated = false;
   } else {
-    // store.dispatch({ type: SET_AUTHENTICATED });
+    store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common['Authorization'] = token;
-    authenticated = true;
-    // store.dispatch(getUserData());
+    // authenticated = true;
+    store.dispatch(getUserData());
   }
 }
 
@@ -55,13 +55,13 @@ function App() {
                 exact
                 path="/login"
                 component={login}
-                authenticated={authenticated}
+                // authenticated={authenticated}
               />
               <AuthRoute
                 exact
                 path="/signup"
                 component={signup}
-                authenticated={authenticated}
+                // authenticated={authenticated}
               />
               />
               {

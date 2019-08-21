@@ -30,11 +30,11 @@ class signup extends Component {
       //loading: false
     };
   }
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.UI.errors) {
-  //     this.setState({ errors: nextProps.UI.errors });
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors });
+    }
+  }
   handleSubmit = event => {
     event.preventDefault();
     // this.setState({
@@ -68,9 +68,9 @@ class signup extends Component {
   render() {
     const {
       classes,
-      // UI: { loading },
+      UI: { loading },
     } = this.props;
-    const { errors, loading } = this.state;
+    const { errors } = this.state;
 
     return (
       <Grid container className={classes.form}>
@@ -159,18 +159,18 @@ class signup extends Component {
 
 signup.propTypes = {
   classes: PropTypes.object.isRequired,
-  // user: PropTypes.object.isRequired,
-  // UI: PropTypes.object.isRequired,
-  // signupUser: PropTypes.functionc.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//   user: state.user,
-//   UI: state.UI,
-// });
+const mapStateToProps = state => ({
+  user: state.user,
+  UI: state.UI,
+});
 
-// export default connect(
-//   mapStateToProps,
-//   { signupUser },
-// )(withStyles(styles)(signup));
-export default withStyles(styles)(signup);
+export default connect(
+  mapStateToProps,
+  { signupUser },
+)(withStyles(styles)(signup));
+// export default withStyles(styles)(signup);
