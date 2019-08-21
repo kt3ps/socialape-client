@@ -36,9 +36,9 @@ class Profile extends Component {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
   };
-  // handleLogout = () => {
-  //   this.props.logoutUser();
-  // };
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
   render() {
     const {
       classes,
