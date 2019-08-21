@@ -6,7 +6,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import PropTypes from 'prop-types';
 import MyButton from '../../util/MyButton';
 // import MyButton from '../../util/MyButton';
-// import DeleteScream from './DeleteScream';
+import DeleteScream from './DeleteScream';
 // import ScreamDialog from './ScreamDialog';
 // import LikeButton from './LikeButton';
 // MUI Stuff
@@ -24,7 +24,7 @@ import { likeScream, unlikeScream } from '../../redux/actions/dataActions';
 
 const styles = {
   card: {
-    // position: 'relative',
+    position: 'relative',
     display: 'flex',
     marginBottom: 20,
   },
@@ -54,6 +54,10 @@ class Scream extends Component {
   unlikeScream = () => {
     this.props.unlikeScream(this.props.scream.screamId);
   };
+  deleteScream = () => {
+    this.props.deleteScream(this.props.scream.screamId);
+    this.setState({ open: false });
+  };
   render() {
     dayjs.extend(relativeTime);
     const {
@@ -69,9 +73,11 @@ class Scream extends Component {
       },
       user: {
         authenticated,
-        // credentials: { handle },
+        credentials: { handle },
       },
     } = this.props;
+    // console.log('this.props.scream', this.props.scream);
+    console.log('handle', this.props.user);
 
     const likeButton = !authenticated ? (
       <Link to="/login">
@@ -88,10 +94,10 @@ class Scream extends Component {
         <FavoriteBorder color="primary" />
       </MyButton>
     );
-    // const deleteButton =
-    //   authenticated && userHandle === handle ? (
-    //     <DeleteScream screamId={screamId} />
-    //   ) : null;
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeleteScream screamId={screamId} />
+      ) : null;
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -107,9 +113,7 @@ class Scream extends Component {
             color="primary">
             {userHandle}
           </Typography>
-          {
-            // deleteButton
-          }
+          {deleteButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>

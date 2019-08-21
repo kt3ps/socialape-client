@@ -31,6 +31,7 @@ export class home extends Component {
       <p>Loading...</p>
       // <ScreamSkeleton />
     );
+    // console.log('handle', this.props.user);
 
     /*
     // let recentScreamsMarkup = this.state.screams ? (
@@ -74,6 +75,7 @@ home.propTypes = {
 
 const mapStateToProps = state => ({
   data: state.data,
+  // user: state.user,
 });
 
 export default connect(

@@ -4,7 +4,6 @@ import './App.css';
 
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 // Redux
 import { Provider } from 'react-redux';
@@ -12,15 +11,18 @@ import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actions/userActions';
 
+import Navbar from './components/Navbar';
+import themeObject from './util/theme';
+import AuthRoute from './util/AuthRoute';
+
 import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
 // import user from './pages/user';
-import Navbar from './components/Navbar';
-import themeObject from './util/theme';
-import AuthRoute from './util/AuthRoute';
-const theme = createMuiTheme(themeObject);
 
+import axios from 'axios';
+
+const theme = createMuiTheme(themeObject);
 axios.defaults.baseURL =
   // 'https://europe-west1-socialape-d081e.cloudfunctions.net/api';
   'https://us-central1-socialape-7f5cd.cloudfunctions.net/api';
@@ -32,7 +34,7 @@ if (token) {
   console.log('decodedToken', decodedToken);
   if (decodedToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser());
-    // window.location.href = '/login';
+    window.location.href = '/login';
     // authenticated = false;
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
@@ -47,8 +49,8 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <Router>
+          <Navbar />
           <div className="container">
-            <Navbar />
             <Switch>
               <Route exact path="/" component={home} />
               <AuthRoute

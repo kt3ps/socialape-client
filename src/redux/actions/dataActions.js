@@ -3,7 +3,7 @@ import {
   LOADING_DATA,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
-  // DELETE_SCREAM,
+  DELETE_SCREAM,
   // SET_ERRORS,
   // POST_SCREAM,
   CLEAR_ERRORS,
@@ -106,14 +106,14 @@ export const unlikeScream = screamId => dispatch => {
 //       });
 //     });
 // };
-// export const deleteScream = (screamId) => (dispatch) => {
-//   axios
-//     .delete(`/scream/${screamId}`)
-//     .then(() => {
-//       dispatch({ type: DELETE_SCREAM, payload: screamId });
-//     })
-//     .catch((err) => console.log(err));
-// };
+export const deleteScream = screamId => dispatch => {
+  axios
+    .delete(`/scream/${screamId}`)
+    .then(() => {
+      dispatch({ type: DELETE_SCREAM, payload: screamId });
+    })
+    .catch(err => console.log(err));
+};
 
 export const getUserData = userHandle => dispatch => {
   dispatch({ type: LOADING_DATA });
